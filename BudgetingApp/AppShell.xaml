@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BudgetingApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BudgetingApp"
+
+
+    Shell.TabBarIsVisible="True"
+  
+ 
+    
+ >
+
+    <TabBar>
+        <ShellContent
+        Title="List of Trips"
+      Icon="list.svg"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage"
+            />
+
+        <ShellContent
+        Title="Add Shopping Trip" 
+            Icon="cart.svg"
+        ContentTemplate="{DataTemplate local:AddShopTrip}"
+        Route="AddShopTrip" />
+    </TabBar>
+
+
+</Shell>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:local="clr-namespace:BudgetingApp"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               
+   
+             x:Class="BudgetingApp.AddShopTrip"
+             Title="Add New Shopping Trip">
+    <VerticalStackLayout Padding="16">
+        <Border  StrokeThickness="3" Padding="12">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <StackLayout Grid.Column="0">
+                <Label Text="Shop Name:" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                <Editor FontSize="16" x:Name="tripShop"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <Label Text="Purchase Date:" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                    <DatePicker FontSize="16" x:Name="tripDate"/>
+
+            </StackLayout>
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+
+                <Label Text="Description:" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                    <Editor FontSize="16" x:Name="tripDescription"/>
+            </StackLayout>
+        </Grid>
+        </Border>
+        <Border  StrokeThickness="3" Padding="12">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
+                    <Label Text="Item Name:" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                    <Editor FontSize="16" x:Name="itemName"/>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="1">
+                    <Label Text="Amount:" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                    <Editor Keyboard="Numeric" FontSize="16" x:Name="itemAmount"/>
+
+                </StackLayout>
+                <StackLayout Grid.Row="1" >
+
+                    <Label Text="Price per Item:" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                    
+                    <Editor Keyboard="Numeric" FontSize="16" x:Name="itemPrice"/>
+                </StackLayout>
+            </Grid>
+        </Border>
+
+
+        <Button Margin="0,10" Text="Add Item" Clicked="addItem"/>
+        <Border Margin="0, 8">
+        <ListView HeightRequest="240"  x:Name="testy" 
+                 >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                           
+                              
+                    
+                                <FlexLayout  AlignItems="Center" JustifyContent="SpaceBetween">
+                                <Label Text="{Binding Name}" MaximumWidthRequest="150" LineBreakMode="TailTruncation"  FontAttributes="Bold" Margin="4" VerticalTextAlignment="Center" FontSize="24"/>
+                                    <Label Text="{Binding Price, StringFormat='{0:F2}zł'}"/>
+                                    <Label Text="{Binding Amount, StringFormat='x{0}'}"/>
+                                <Label>
+                                    <Label.Text>
+                                        <MultiBinding Converter="{StaticResource Key=MultiplyConverter}" StringFormat="{}{0}zł">
+                                            <Binding Path="Price" />
+                                            <Binding Path="Amount"/>
+                                    
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+
+
+                                <Button FlexLayout.AlignSelf="Center"  FontAttributes="Bold"  BindingContext="{Binding Id}" Text="X" WidthRequest="54" HeightRequest="54" Clicked="removeItem"/>
+
+                            </FlexLayout>
+                                
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </Border>
+
+
+    </VerticalStackLayout>
+</ContentPage>
