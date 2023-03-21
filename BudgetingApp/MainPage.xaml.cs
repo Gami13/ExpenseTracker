@@ -14,10 +14,13 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
         List<Database.shoppingTrip> shoppingTrips = Database.getAllTrips();
+		if (shoppingTrips.Count >0 )
+		{
+            testLabel.Text = shoppingTrips[0].Shop;
 
-		testLabel.Text = shoppingTrips[0].Shop;
-		
-	}
+        }
+
+    }
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{

@@ -55,8 +55,15 @@ public class Database
     }
     public static int getMaxTripId()
     {
-        int maxId = conn.Table<shoppingTrip>().OrderByDescending(x => x.Id).FirstOrDefault().Id;
-        return maxId;
+        try
+        {
+            int maxId = conn.Table<shoppingTrip>().OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            return maxId;
+        }
+        catch
+        {
+            return 0;
+        }
     }
     public static void addPurchase(Purchase purchase)
     {
