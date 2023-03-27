@@ -1,40 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="Main"
              x:Class="BudgetingApp.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Clicked="refresh" Order="Primary" />
+    </ContentPage.ToolbarItems>
 
     <ScrollView>
+        
         <VerticalStackLayout
             Spacing="25"
-            Padding="30,0"
+            Padding="15,0"
             VerticalOptions="Center">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                <Picker x:Name="sortBy" Title="Sort By" SelectedIndex="0" SelectedIndexChanged="sortIndexChanged" HorizontalTextAlignment="Center" WidthRequest="200">
+                    <Picker.Items>
+                        <x:String>Ascending</x:String>
+                        <x:String>Descending</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker x:Name="inTimespan" Title="Time Frame" SelectedIndex="6" SelectedIndexChanged="timeSpanChanged"  HorizontalTextAlignment="Center" WidthRequest="200">
+                    <Picker.Items>
+                        <x:String>Last Week</x:String>
+                        <x:String>Last 2 Weeks</x:String>
+                        <x:String>Last Month</x:String>
+                        <x:String>Last 3 Months</x:String>
+                        <x:String>Last 6 Months</x:String>
+                        <x:String>Last Year</x:String>
+                        <x:String>All Time</x:String>
+                    </Picker.Items>
+                </Picker>
+            </HorizontalStackLayout>
+            
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+            <ListView HeightRequest="500"  x:Name="trips"  RowHeight="60" 
+                 >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                                
+                               <FlexLayout   AlignItems="Center" JustifyContent="SpaceBetween">
+                                <Label Text="{Binding Shop}" WidthRequest="110" LineBreakMode="MiddleTruncation"  FontAttributes="Bold" Margin="4" VerticalTextAlignment="Center" FontSize="16"/>
+                                <Label Text="{Binding Description}" WidthRequest="210" LineBreakMode="WordWrap" VerticalTextAlignment="Center" FontSize="12"/>
+                                <Label Text="{Binding Date, StringFormat='{0:d}'}" WidthRequest="35" HorizontalTextAlignment="End" />
+                                <Label Text="{Binding Price, StringFormat='{0:F2}zł'}" HorizontalTextAlignment="End" WidthRequest="75"/>
+                                <FlexLayout.GestureRecognizers>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                                    <TapGestureRecognizer
+                                    Command="{Binding Source={x:Reference Name=Main}}"
+                                    NumberOfTapsRequired="1"
+                                    Tapped="onItemTapped" BindingContext="{Binding Id}">        
 
-            <Label
-                x:Name="testLabel"
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                                    </TapGestureRecognizer>
+                                </FlexLayout.GestureRecognizers>
+                               </FlexLayout>
+                                
+                       
+                         
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
         </VerticalStackLayout>
     </ScrollView>

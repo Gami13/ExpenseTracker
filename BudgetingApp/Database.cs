@@ -1,9 +1,6 @@
 ﻿namespace BudgetingApp;
 
-using Microsoft.Maui.Storage;
 using SQLite;
-using System.Data.Common;
-using System.Runtime.CompilerServices;
 
 public class Database
 {
@@ -13,7 +10,7 @@ public class Database
     public static SQLiteConnection conn = new SQLiteConnection(path);
 
     [Table("shoppingTrip")]
-    public class shoppingTrip
+    public class ShoppingTrip
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -36,20 +33,21 @@ public class Database
         public int shoppingTripId { get; set; }
     }
 
+
     public static void CreateDatabase()
     {
-        conn.CreateTable<shoppingTrip>();
+        conn.CreateTable<ShoppingTrip>();
         conn.CreateTable<Purchase>();
-     
+
 
     }
-    public static List<shoppingTrip> getAllTrips()
+    public static List<ShoppingTrip> getAllTrips()
     {
-        List<shoppingTrip> shoppingTrips = conn.Table<shoppingTrip>().ToList();
-       
+        List<ShoppingTrip> shoppingTrips = conn.Table<ShoppingTrip>().ToList();
+
         return shoppingTrips;
     }
-    public static void addTrip(shoppingTrip trip)
+    public static void addTrip(ShoppingTrip trip)
     {
         conn.Insert(trip);
     }
@@ -57,7 +55,7 @@ public class Database
     {
         try
         {
-            int maxId = conn.Table<shoppingTrip>().OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            int maxId = conn.Table<ShoppingTrip>().OrderByDescending(x => x.Id).FirstOrDefault().Id;
             return maxId;
         }
         catch
@@ -69,5 +67,6 @@ public class Database
     {
         conn.Insert(purchase);
     }
+
 }
 

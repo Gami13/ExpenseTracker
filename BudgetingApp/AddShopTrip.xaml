@@ -5,7 +5,12 @@
                
    
              x:Class="BudgetingApp.AddShopTrip"
-             Title="Add New Shopping Trip">
+             Title="Add New Shopping Trip"
+             
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Trip" Clicked="addTrip" Order="Primary" />
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout Padding="16">
         <Border  StrokeThickness="3" Padding="12">
         <Grid >

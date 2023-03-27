@@ -25,7 +25,13 @@
             Icon="cart.svg"
         ContentTemplate="{DataTemplate local:AddShopTrip}"
         Route="AddShopTrip" />
+
+     
     </TabBar>
 
-
+    <ShellContent
+        Title="Add Shopping Trip" 
+            Icon="cart.svg"
+        ContentTemplate="{DataTemplate local:ShopTripDetails}"
+        Route="Details" />
 </Shell>
