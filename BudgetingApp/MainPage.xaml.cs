@@ -21,6 +21,8 @@ public partial class MainPage : ContentPage
     private void refresh(object sender, EventArgs e)
     {
         shoppingTrips = Database.getAllTrips();
+        trips.ItemsSource = shoppingTrips;
+
     }
     private void sortIndexChanged(object sender, System.EventArgs e)
     {
@@ -32,10 +34,12 @@ public partial class MainPage : ContentPage
     }
     private async void onItemTapped(object sender, System.EventArgs e)
     {
-        FlexLayout btn = (FlexLayout)sender;
+        Grid btn = (Grid)sender;
 
-        Debug.WriteLine($"TAPPED  {btn.BindingContext.ToString()}");
-        await Shell.Current.GoToAsync($"//Details?id={2}");
+        var context = btn.BindingContext as Database.ShoppingTrip;
+
+        Debug.WriteLine($"TAPPED  {context.Id}");
+        await Shell.Current.GoToAsync($"//Details?id={context.Id}");
     }
 }
 

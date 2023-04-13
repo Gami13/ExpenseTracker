@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:local="clr-namespace:BudgetingApp"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               
+   
              x:Class="BudgetingApp.ShopTripDetails"
-             Title="NewPage1"
-                Shell.PresentationMode="ModalAnimated">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            FontSize="43"
-            HorizontalOptions="Center" />
+             Title="Add New Shopping Trip"
+             
+             >
+    <VerticalStackLayout Padding="16">
+        <Border  StrokeThickness="3" Padding="12">
+            <ListView  x:Name="testy2" HeightRequest="160" RowHeight="140">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <ViewCell>
+                         <FlexLayout AlignItems="Center" JustifyContent="SpaceBetween" Wrap="Wrap" Direction="Column">
+                            <Label Text="{Binding Shop, StringFormat='Shop Name: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Date, StringFormat='Purchase Date: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Description, StringFormat='Description: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold"/>
+                        </FlexLayout>
+                    </ViewCell>
+                        </DataTemplate>
+                            </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+        
+        <Border Margin="0, 8">
+            <ListView HeightRequest="400"  x:Name="testy" 
+                 >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <FlexLayout  AlignItems="Center" JustifyContent="SpaceBetween">
+                                <Label Text="{Binding Name}" MaximumWidthRequest="150" LineBreakMode="TailTruncation"  FontAttributes="Bold" Margin="4" VerticalTextAlignment="Center" FontSize="24"/>
+                                <Label Text="{Binding Price, StringFormat='{0:F2}zł'}" Margin="4"/>
+                                <Label Text="{Binding Amount, StringFormat='x{0}'}" Margin="4"/>
+                                <Label Margin="4">
+                                    <Label.Text>
+                                        <MultiBinding Converter="{StaticResource Key=MultiplyConverter}" StringFormat="{}{0}zł">
+                                            <Binding Path="Price" />
+                                            <Binding Path="Amount"/>
+
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </FlexLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
+
     </VerticalStackLayout>
 </ContentPage>

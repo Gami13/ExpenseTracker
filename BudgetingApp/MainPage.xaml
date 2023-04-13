@@ -41,12 +41,24 @@
                         <ViewCell>
                             
                                 
-                               <FlexLayout   AlignItems="Center" JustifyContent="SpaceBetween">
-                                <Label Text="{Binding Shop}" WidthRequest="110" LineBreakMode="MiddleTruncation"  FontAttributes="Bold" Margin="4" VerticalTextAlignment="Center" FontSize="16"/>
-                                <Label Text="{Binding Description}" WidthRequest="210" LineBreakMode="WordWrap" VerticalTextAlignment="Center" FontSize="12"/>
-                                <Label Text="{Binding Date, StringFormat='{0:d}'}" WidthRequest="35" HorizontalTextAlignment="End" />
-                                <Label Text="{Binding Price, StringFormat='{0:F2}zł'}" HorizontalTextAlignment="End" WidthRequest="75"/>
-                                <FlexLayout.GestureRecognizers>
+                               <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="6*"/>
+
+                                    <ColumnDefinition Width="3*"/>
+
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Shop}"  LineBreakMode="MiddleTruncation"  FontAttributes="Bold" Margin="0" VerticalTextAlignment="Center" FontSize="16"/>
+                                <Label Grid.RowSpan="2" Grid.Column="1" Text="{Binding Description}" LineBreakMode="WordWrap" VerticalTextAlignment="Center" FontSize="12"/>
+                                <Label Grid.Row="1" Text="{Binding Date, StringFormat='{0:d}'}"  HorizontalTextAlignment="Start" />
+                                <Label Grid.RowSpan="2" Grid.Column="2" Text="{Binding Price, StringFormat='{0:F2}zł'}" HorizontalTextAlignment="End" />
+                                <Grid.GestureRecognizers>
 
                                     <TapGestureRecognizer
                                     Command="{Binding Source={x:Reference Name=Main}}"
@@ -54,8 +66,8 @@
                                     Tapped="onItemTapped" BindingContext="{Binding Id}">        
 
                                     </TapGestureRecognizer>
-                                </FlexLayout.GestureRecognizers>
-                               </FlexLayout>
+                                </Grid.GestureRecognizers>
+                               </Grid>
                                 
                        
                          

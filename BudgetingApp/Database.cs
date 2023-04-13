@@ -51,6 +51,23 @@ public class Database
     {
         conn.Insert(trip);
     }
+
+    public static List<Purchase> desuGetAllPurchaches(string id)
+    {
+        int intid = Int32.Parse(id);
+        List<Purchase> pur = conn.Table<Purchase>().Where(x => x.shoppingTripId == intid).ToList();
+
+        return pur;
+    }
+
+    public static ShoppingTrip desuGetShoppingTrip(string id)
+    {
+        int intid = Int32.Parse(id);
+        ShoppingTrip pur = conn.Table<ShoppingTrip>().Where(x => x.Id == intid).First();
+
+        return pur;
+    }
+
     public static int getMaxTripId()
     {
         try
