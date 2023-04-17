@@ -16,8 +16,13 @@
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
                 <Picker x:Name="sortBy" Title="Sort By" SelectedIndex="0" SelectedIndexChanged="sortIndexChanged" HorizontalTextAlignment="Center" WidthRequest="200">
                     <Picker.Items>
-                        <x:String>Ascending</x:String>
-                        <x:String>Descending</x:String>
+                        <x:String>by Date - Descending</x:String>
+                        <x:String>by Date - Ascending</x:String>
+                        <x:String>Alphabetically - Descending</x:String>
+                        <x:String>Alphabetically - Ascending</x:String>
+                        <x:String>by Total Price - Descending</x:String>
+                        <x:String>by Total Price - Ascending</x:String>
+
                     </Picker.Items>
                 </Picker>
                 <Picker x:Name="inTimespan" Title="Time Frame" SelectedIndex="6" SelectedIndexChanged="timeSpanChanged"  HorizontalTextAlignment="Center" WidthRequest="200">

@@ -4,6 +4,15 @@ using SQLite;
 
 public class Database
 {
+    public enum sortBy
+    {
+        DATE, PRICE, SHOP
+    }
+    static public sortBy selectedSort = sortBy.DATE;
+    public const int defaultDays = 19464;
+    static public int days = defaultDays;
+    static public bool isReverse = false;
+
     static string sqliteFilename = "budgeting.db3";
     static string libraryPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
     static string path = Path.Combine(libraryPath, sqliteFilename);
@@ -44,7 +53,43 @@ public class Database
     public static List<ShoppingTrip> getAllTrips()
     {
         List<ShoppingTrip> shoppingTrips = conn.Table<ShoppingTrip>().ToList();
-
+        switch (selectedSort)
+        {
+            case sortBy.DATE:
+                if (isReverse)
+                {
+                    shoppingTrips = shoppingTrips.OrderByDescending(x => x.Date).ToList();
+                }
+                else
+                {
+                    shoppingTrips = shoppingTrips.OrderBy(x => x.Date).ToList();
+                }
+                break;
+            case sortBy.PRICE:
+                if (isReverse)
+                {
+                    shoppingTrips = shoppingTrips.OrderByDescending(x => x.Price).ToList();
+                }
+                else
+                {
+                    shoppingTrips = shoppingTrips.OrderBy(x => x.Price).ToList();
+                }
+                break;
+            case sortBy.SHOP:
+                if (isReverse)
+                {
+                    shoppingTrips = shoppingTrips.OrderByDescending(x => x.Shop).ToList();
+                }
+                else
+                {
+                    shoppingTrips = shoppingTrips.OrderBy(x => x.Shop).ToList();
+                }
+                break;
+            default:
+                break;
+        }
+        //in days
+        shoppingTrips = shoppingTrips.Where(x => (DateTime.Now - x.Date).TotalDays < days).ToList();
         return shoppingTrips;
     }
     public static void addTrip(ShoppingTrip trip)
