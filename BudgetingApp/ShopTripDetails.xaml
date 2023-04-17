@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:local="clr-namespace:BudgetingApp"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               
+     
    
              x:Class="BudgetingApp.ShopTripDetails"
-             Title="Add New Shopping Trip"
+             Title="Trip Details"
+        Shell.TabBarIsVisible="True"
              
              >
     <VerticalStackLayout Padding="16">
@@ -13,15 +14,16 @@
             <ListView  x:Name="testy2" HeightRequest="160" RowHeight="140">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                    <ViewCell>
-                         <FlexLayout AlignItems="Center" JustifyContent="SpaceBetween" Wrap="Wrap" Direction="Column">
-                            <Label Text="{Binding Shop, StringFormat='Shop Name: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold"/>
-                            <Label Text="{Binding Date, StringFormat='Purchase Date: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold"/>
-                            <Label Text="{Binding Description, StringFormat='Description: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold"/>
-                        </FlexLayout>
-                    </ViewCell>
-                        </DataTemplate>
-                            </ListView.ItemTemplate>
+                        <ViewCell>
+                            <StackLayout >
+                                
+                                <Label Text="{Binding Shop, StringFormat='Shop Name: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding Date, StringFormat='Purchase Date: {0:d}'}" Padding="4" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding Description, StringFormat='Description: {0}'}" Padding="4" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Border>
         

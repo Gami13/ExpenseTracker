@@ -26,7 +26,7 @@ public partial class MainPage : ContentPage
     }
     private void sortIndexChanged(object sender, System.EventArgs e)
     {
-        Debug.WriteLine("Test");
+        Debug.WriteLine("Test" + ((Picker)sender).SelectedItem);
     }
     private void timeSpanChanged(object sender, System.EventArgs e)
     {
@@ -37,7 +37,7 @@ public partial class MainPage : ContentPage
         Grid btn = (Grid)sender;
 
         var context = btn.BindingContext as Database.ShoppingTrip;
-
+        MessagingCenter.Send<MainPage, string>(this, "showThing", "Test");
         Debug.WriteLine($"TAPPED  {context.Id}");
         await Shell.Current.GoToAsync($"//Details?id={context.Id}");
     }

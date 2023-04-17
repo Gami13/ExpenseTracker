@@ -1,6 +1,3 @@
-
-using System.Diagnostics;
-
 namespace BudgetingApp;
 
 public partial class ShopTripDetails : ContentPage, IQueryAttributable
@@ -22,7 +19,7 @@ public partial class ShopTripDetails : ContentPage, IQueryAttributable
         testy.ItemsSource = pur;
 
         Database.ShoppingTrip pur2 = Database.desuGetShoppingTrip(id);
-        List<Database.ShoppingTrip> test = new List<Database.ShoppingTrip>() { pur2};
+        List<Database.ShoppingTrip> test = new List<Database.ShoppingTrip>() { pur2 };
         testy2.ItemsSource = test;
 
     }
