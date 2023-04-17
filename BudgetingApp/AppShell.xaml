@@ -25,6 +25,7 @@
             Icon="cart.svg"
         ContentTemplate="{DataTemplate local:AddShopTrip}"
         Route="AddShopTrip" />
+
         <ShellContent
         Title="Trip Details" 
             Icon="cart.svg"

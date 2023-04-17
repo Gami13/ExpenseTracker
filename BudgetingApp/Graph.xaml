@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BudgetingApp.Graph"
+             Title="Graph"
+
+xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:vms="clr-namespace:BudgetingApp;assembly=BudgetingApp">
+    <ContentPage.BindingContext>
+        <vms:ViewModel/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        
+        <Label Text="Graph" FontSize="Large" HorizontalTextAlignment="Center" Margin="0,10,0,0" />
+        <lvc:CartesianChart x:Name="graph" Series="{Binding Series}" Title="{Binding Title}" />
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                    <Picker x:Name="sortBy" Title="Sort By" SelectedIndex="0" SelectedIndexChanged="sortIndexChanged" HorizontalTextAlignment="Center" WidthRequest="200">
+                        <Picker.Items>
+                            <x:String>by Date - Descending</x:String>
+                            <x:String>by Date - Ascending</x:String>
+                            <x:String>Alphabetically - Descending</x:String>
+                            <x:String>Alphabetically - Ascending</x:String>
+                            <x:String>by Total Price - Descending</x:String>
+                            <x:String>by Total Price - Ascending</x:String>
+
+                        </Picker.Items>
+                    </Picker>
+                    <Picker x:Name="inTimespan" Title="Time Frame" SelectedIndex="6" SelectedIndexChanged="timeSpanChanged"  HorizontalTextAlignment="Center" WidthRequest="200">
+                        <Picker.Items>
+                            <x:String>Last Week</x:String>
+                            <x:String>Last 2 Weeks</x:String>
+                            <x:String>Last Month</x:String>
+                            <x:String>Last 3 Months</x:String>
+                            <x:String>Last 6 Months</x:String>
+                            <x:String>Last Year</x:String>
+                            <x:String>All Time</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </HorizontalStackLayout>
+
+
+               
+
+
+    </VerticalStackLayout>
+</ContentPage>
