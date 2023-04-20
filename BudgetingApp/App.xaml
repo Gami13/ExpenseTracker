@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <local:MultiplyConverter x:Key="MultiplyConverter"/>
+            
 
         </ResourceDictionary>
     </Application.Resources>

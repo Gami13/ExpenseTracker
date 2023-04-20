@@ -4,6 +4,7 @@ using SQLite;
 
 public class Database
 {
+
     public enum sortBy
     {
         DATE, PRICE, SHOP
@@ -17,7 +18,7 @@ public class Database
     static string libraryPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
     static string path = Path.Combine(libraryPath, sqliteFilename);
     public static SQLiteConnection conn = new SQLiteConnection(path);
-
+    public static List<Database.ShoppingTrip> shoppingTrips;
     [Table("shoppingTrip")]
     public class ShoppingTrip
     {
@@ -90,6 +91,7 @@ public class Database
         }
         //in days
         shoppingTrips = shoppingTrips.Where(x => (DateTime.Now - x.Date).TotalDays < days).ToList();
+        Database.shoppingTrips = shoppingTrips;
         return shoppingTrips;
     }
     public static void addTrip(ShoppingTrip trip)

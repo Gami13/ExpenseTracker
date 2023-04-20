@@ -25,6 +25,11 @@
             Icon="cart.svg"
         ContentTemplate="{DataTemplate local:AddShopTrip}"
         Route="AddShopTrip" />
+        <ShellContent
+            Title="Statistics"
+            Icon="stats.svg"
+            ContentTemplate="{DataTemplate local:Graph}"
+            Route="Graph"/>
 
         <ShellContent
         Title="Trip Details" 

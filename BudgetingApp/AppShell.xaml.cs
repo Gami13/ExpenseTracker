@@ -11,6 +11,7 @@ public partial class AppShell : Shell
             tripDetails.IsVisible = true;
         });
 
+
     }
     protected override void OnNavigating(ShellNavigatingEventArgs args)
     {

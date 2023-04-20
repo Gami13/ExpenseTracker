@@ -8,20 +8,20 @@ namespace BudgetingApp;
 
 public partial class MainPage : ContentPage
 {
-    List<Database.ShoppingTrip> shoppingTrips;
+
 
     public MainPage()
     {
         InitializeComponent();
-        shoppingTrips = Database.getAllTrips();
-        trips.ItemsSource = shoppingTrips;
+        Database.getAllTrips();
+        trips.ItemsSource = Database.shoppingTrips;
     }
 
 
     private void refresh(object sender, EventArgs e)
     {
-        shoppingTrips = Database.getAllTrips();
-        trips.ItemsSource = shoppingTrips;
+        Database.getAllTrips();
+        trips.ItemsSource = Database.shoppingTrips;
 
     }
     private void sortIndexChanged(object sender, System.EventArgs e)
@@ -56,8 +56,8 @@ public partial class MainPage : ContentPage
             default:
                 break;
         }
-        shoppingTrips = Database.getAllTrips();
-        trips.ItemsSource = shoppingTrips;
+        Database.getAllTrips();
+        trips.ItemsSource = Database.shoppingTrips;
     }
     private void timeSpanChanged(object sender, System.EventArgs e)
     {
@@ -88,8 +88,8 @@ public partial class MainPage : ContentPage
             default:
                 break;
         }
-        shoppingTrips = Database.getAllTrips();
-        trips.ItemsSource = shoppingTrips;
+        Database.getAllTrips();
+        trips.ItemsSource = Database.shoppingTrips;
     }
     private async void onItemTapped(object sender, System.EventArgs e)
     {
